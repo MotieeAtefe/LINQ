@@ -1,4 +1,6 @@
-﻿namespace LINQ
+﻿using System.ComponentModel.Design;
+
+namespace LINQ
 {
     internal class Program
     {
@@ -22,8 +24,39 @@
                                                  ArrivalTime =  DateTime.Parse("2024-01-02 20:00") },
 
             };
-                  Console.WriteLine("Flight Information System");
-                  ListAllFlights(flights: list);
+            Console.WriteLine("\nFlight Information System");
+            while(true) 
+            {
+                Console.WriteLine("\n1. List all flights");
+                Console.WriteLine("2. Search for flights");
+                Console.WriteLine("3. Exit");
+                Console.Write("Enter Your Choice: ");
+
+                if(int.TryParse(Console.ReadLine(), out int choice)) 
+                { 
+                    switch(choice) 
+                    {
+                        case 1:
+                            ListAllFlights(list);
+                            break;
+                        case 2:
+                            SearchFlights(list); 
+                            break;
+                        case 3:
+                            Console.WriteLine("Exit program, Have a good times!");
+                            return;
+                        default:
+                            Console.WriteLine("Invalid choise");
+                            break;
+
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input, please try again");
+                }
+            }
 
         }
         static void ListAllFlights(List<FlightInformationSystem> flights)
